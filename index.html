@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hour Tracking Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Dorger Software Architects</p>
+        <h1>Hour Tracking Dashboard</h1>
+        <p class="subtitle">
+          Manage your pay rate, log your hours, and stay ahead of scheduled shifts.
+        </p>
+      </div>
+      <button class="primary" id="export-btn" type="button">Export summary</button>
+    </header>
+
+    <main class="container">
+      <section class="card" aria-labelledby="pay-rate-title">
+        <div class="card-header">
+          <div>
+            <h2 id="pay-rate-title">Current Pay Rate</h2>
+            <p class="muted">Update your hourly rate and see estimated weekly earnings.</p>
+          </div>
+          <span class="badge" id="pay-rate-display">$0.00/hr</span>
+        </div>
+        <form id="pay-rate-form" class="form-grid">
+          <label class="field">
+            Hourly rate
+            <input type="number" min="0" step="0.01" name="rate" placeholder="25.00" required />
+          </label>
+          <label class="field">
+            Standard weekly hours
+            <input type="number" min="0" step="0.5" name="standardHours" placeholder="40" required />
+          </label>
+          <button class="primary" type="submit">Save rate</button>
+        </form>
+        <div class="summary" id="pay-summary">
+          <div>
+            <p class="label">Estimated weekly pay</p>
+            <p class="value" id="weekly-pay">$0.00</p>
+          </div>
+          <div>
+            <p class="label">Estimated monthly pay</p>
+            <p class="value" id="monthly-pay">$0.00</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="log-title">
+        <div class="card-header">
+          <div>
+            <h2 id="log-title">Hourly Logs</h2>
+            <p class="muted">Capture hours worked, notes, and see total earnings.</p>
+          </div>
+          <span class="badge" id="log-total">0 hrs</span>
+        </div>
+        <form id="log-form" class="form-grid">
+          <label class="field">
+            Date
+            <input type="date" name="date" required />
+          </label>
+          <label class="field">
+            Hours worked
+            <input type="number" min="0" step="0.25" name="hours" placeholder="8" required />
+          </label>
+          <label class="field">
+            Notes
+            <input type="text" name="notes" placeholder="Project planning" />
+          </label>
+          <button class="primary" type="submit">Add log</button>
+        </form>
+
+        <div class="table" role="table" aria-label="Logged hours">
+          <div class="table-row table-head" role="row">
+            <span>Date</span>
+            <span>Hours</span>
+            <span>Notes</span>
+            <span>Est. pay</span>
+            <span></span>
+          </div>
+          <div id="log-rows" class="table-body"></div>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="schedule-title">
+        <div class="card-header">
+          <div>
+            <h2 id="schedule-title">Scheduled Hours</h2>
+            <p class="muted">Plan upcoming shifts and keep an eye on weekly coverage.</p>
+          </div>
+          <span class="badge" id="schedule-total">0 hrs</span>
+        </div>
+        <form id="schedule-form" class="form-grid">
+          <label class="field">
+            Week of
+            <input type="date" name="weekOf" required />
+          </label>
+          <label class="field">
+            Planned hours
+            <input type="number" min="0" step="0.25" name="hours" placeholder="20" required />
+          </label>
+          <label class="field">
+            Focus area
+            <input type="text" name="focus" placeholder="Client support" />
+          </label>
+          <button class="primary" type="submit">Add schedule</button>
+        </form>
+
+        <div class="table" role="table" aria-label="Scheduled hours">
+          <div class="table-row table-head" role="row">
+            <span>Week of</span>
+            <span>Hours</span>
+            <span>Focus</span>
+            <span></span>
+          </div>
+          <div id="schedule-rows" class="table-body"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Keep entries lightweight and export summaries for payroll reviews.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
